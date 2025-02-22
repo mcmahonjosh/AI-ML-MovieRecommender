@@ -13,6 +13,14 @@ vectorizer = TfidfVectorizer(stop_words='english') #increase cosine similarity b
 vectorizer.fit(top500_movies['Overview'])
 
 preference = input("Enter your preferences in a movie: ")
+
+while True:
+    try:
+        NumberMovies = int(input("And how many movies would you like me to recommend? "))
+        break
+    except ValueError:
+        print("Please enter a valid number.")
+        
 preference_vector = vectorizer.transform([preference])
 
 for index, row in top500_movies.iterrows():
@@ -23,11 +31,11 @@ for index, row in top500_movies.iterrows():
 
 df = pd.DataFrame(top500_movies)
 sorted_by_cosine = df.sort_values(by='Similarity_To_Preference', ascending=False)
-top_5 = sorted_by_cosine.head(5)
+top_N = sorted_by_cosine.head(NumberMovies)
 
 
-print('The top 5 movies I would recommend based on your preferences are: ', '\n')
-print(top_5[['Series_Title', 'Similarity_To_Preference']].rename(columns={'Similarity_To_Preference' : 'Similarity Score'}).to_string(index=False))
+print('The top ' + str(NumberMovies) + ' movies I would recommend based on your preferences are: ', '\n')
+print(top_N[['Series_Title', 'Similarity_To_Preference']].rename(columns={'Similarity_To_Preference' : 'Similarity Score'}).to_string(index=False))
 
 
 
