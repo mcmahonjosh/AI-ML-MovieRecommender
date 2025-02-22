@@ -47,16 +47,16 @@ print(top_N[['Series_Title', 'Similarity_To_Preference']].rename(columns={'Simil
 
 
 
+#Testing TF-IDF vectorization and cosine similarity:
+
 #print(top500_movies_copy)
 
 
 #top500_movies.to_csv('top_500_movies.csv', index=False)
 
-
 #sentence1 = "I love programming in Python."
 #sentence2 = "I do my homework everyday"
 #sentence3 = "Python is my favorite programming language."
-
 
 #tfidf_matrix = vectorizer.fit_transform([sentence1, sentence3])
 
